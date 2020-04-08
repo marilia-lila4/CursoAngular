@@ -1,0 +1,36 @@
+<h2> Curso List </h2>
+
+<div class=form-group row>
+    <label class="col-sm-2 col-form-label">Filtrar por:</label>
+
+    <div class=col-sm-10>
+        <input [(ngModel)]="filtro" class="form-control">
+    </div>
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Code</th>
+            <th>Release Date</th>
+            <th>Rating</th>
+            <th>Options</th>
+        </tr>   
+    </thead>
+    <tbody>
+        <tr *ngFor="let curso of filtroCursos" >
+            <td><img [src]="curso.imageUrl" height="40" width="40" /></td> <!-- Precisa colocar entre [] para entender que vai buscar do código angular e não uma simples tag de html -->
+            <td>{{ curso.name }}</td>
+            <td>{{ curso.price }}</td>
+            <td>{{ curso.code | lowercase | replace: '-' : ' '  }}</td> <!-- lowercase - Deixar letras minuscula || criado o Pipe replace onde está substituindo o - com o espaço entre as letras e os números-->
+            <td>{{ curso.releaseDate | date: 'dd/MM/yyyy' }}</td>
+            <td>
+                <app-star [rating]="curso.rating"></app-star>
+            </td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
